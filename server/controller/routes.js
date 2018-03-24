@@ -46,5 +46,10 @@ router.put('/data/put/:id', (req, res)=>{
     .catch((err)=> res.status(404).json({msg : "Something went wrong"}))
 })
 
+router.get('/data/find/:id', (req, res)=>{
+    studentModel.findById(id)
+                .then((student)=> res.json(student))
+                .catch((err)=> res.status(404).json({msg : "Something went wrong"}))            
+})
 
 module.exports = router;
