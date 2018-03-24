@@ -5,9 +5,8 @@ router.get('/', (req, res)=>{
                 .then((students)=>{
                     res.json(students)
                 })
-                .catch((err)=>{
-                    res.json(err);
-                })
+                .catch((err)=> res.status(404).json({msg : "Something went wrong"}))
+
 })
 
 router.post('/data/input', (req, res)=>{
@@ -25,6 +24,12 @@ router.post('/data/input', (req, res)=>{
            .catch((err)=>{
                res.status(404).json({msg : "Something went wrong" })
            })
+})
+
+router.delete('/data/delete/:id', (req, res)=>{
+    studentModel.findByIdAndRemove(req.params.id)
+                .then((student)=> res.redirect('/'))
+                .catch((err)=> res.status(404).json({msg : "Something went wrong"}))
 })
 
 module.exports = router;
