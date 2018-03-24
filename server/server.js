@@ -4,7 +4,7 @@ const app = express();
 //create mongooDb connection
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise;
-var url = `mongodb://localhost:27017/android`
+var url = `mongodb://ratnani1996:india123@ds121309.mlab.com:21309/androidrestapi`
 mongoose.connect(url)
 mongoose.connection
         .once('connected', ()=> console.log(`Connection to the database up and running`))
