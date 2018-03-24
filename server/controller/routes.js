@@ -14,7 +14,7 @@ router.post('/data/input', (req, res)=>{
         name : req.body.name,
         roll : req.body.roll,
         percentage : req.body.percentage,
-        schoolName : req.body.shcoolName
+        schoolName : req.body.schoolName
     })
     
     student.save()
@@ -31,5 +31,20 @@ router.delete('/data/delete/:id', (req, res)=>{
                 .then((student)=> res.redirect('/'))
                 .catch((err)=> res.status(404).json({msg : "Something went wrong"}))
 })
+
+router.put('/data/put/:id', (req, res)=>{
+    var student = {
+        name : req.body.name,
+        roll : req.body.roll,
+        percentage : req.body.percentage,
+        schoolName : req.body.schoolName
+    }
+    studentModel.findByIdAndUpdate({_id : req.params.id}, {
+        $set : student
+    })
+    .then((student)=> res.redirect('/'))
+    .catch((err)=> res.status(404).json({msg : "Something went wrong"}))
+})
+
 
 module.exports = router;
