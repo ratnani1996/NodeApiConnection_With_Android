@@ -19,5 +19,6 @@ app.use(bodyParser.json())
 //acquire routes
 app.use(require('./controller/routes'))
 
+app.use((req, res)=> res.status(404).json({msg : "Something Went wrong"}))
 
 app.listen(3000, ()=> console.log(`Running on localhost 3000`))
